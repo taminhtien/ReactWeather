@@ -10,8 +10,10 @@ var Examples = require('Examples');
 // require doesn't know how to load css file, so we need to use css loader
 // then use style loader to inject the css into html
 
-require('style!css!foundation-sites/dist/foundation.min.css')
+require("style!css!foundation-sites/dist/foundation.min.css");
 $(document).foundation();
+
+require("style!css!applicationStyles");
 
 ReactDOM.render(
   <Router history={hashHistory}>
