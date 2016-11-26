@@ -1,5 +1,21 @@
+var webpack = require('webpack'); // Webpack utils
+
 module.exports = {
-  entry: './app/app.jsx',
+  entry: [
+    'script!jquery/dist/jquery.min.js', // Those are script files so we will let script loader to load, no need webpack to handle it
+    'script!foundation-sites/dist/foundation.min.js',
+    './app/app.jsx',
+  ],
+  externals: { // Set of key-value pair, key is module name and value is a variable we want to available when loading script files in entry
+    jquery: 'jQuery' 
+  },
+  // Create a new provide plugin, will give us shortcuts to use in component files, for example '$' variable
+  plugins: [ // Set of key-value pair, key is variable, value is module name
+    new webpack.ProvidePlugin({
+      '$': 'jquery',
+      'jQuery': 'jquery'
+    })
+  ],
   output: {
     path: __dirname,
     filename: './public/bundle.js'
